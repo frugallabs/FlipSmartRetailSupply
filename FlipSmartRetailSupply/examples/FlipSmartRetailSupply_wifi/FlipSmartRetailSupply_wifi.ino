@@ -1,5 +1,5 @@
 /*
- * This is a Source coede for the FLIP SMART RETAIL & SUPPLY SHIELD with wifi.
+ * This is a Source code for the FLIP SMART RETAIL & SUPPLY SHIELD with wifi.
  * The code is written by Anirban Chowdhury & Abhay S Bharadwaj
  * for Frugal Labs Tech Solutions Pvt. Ltd. Bengaluru,India.
  * CC license, check license.txt for more information.
@@ -23,8 +23,8 @@ char* pir_topic ="flip/store/pir";
 char* ldr_topic ="flip/store/ldr";
 char* rfid_topic ="flip/store/rfid";
 char* weight_topic ="flip/store/weight";
-char* ssid="FLIP";
-char* pwd="frugal2015";
+char* ssid="flip";
+char* pwd="frugal2016";
 
 void setup() 
 {
@@ -48,6 +48,8 @@ void loop()
   ldr = fsrs.readLdr();
   m.mqttPub(ldr_topic,ldr);
 
-  x=fsrs.getRfid();
-  m.mqttPub(rfid_topic, x);
+  x=fsrs.getRfid();//get the RFID value
+  String sx =*x;//convert it to string
+  if(sx!=0)//if string is not '0', then publish.
+  m.mqttPub(rfid_topic, &sx);
 }

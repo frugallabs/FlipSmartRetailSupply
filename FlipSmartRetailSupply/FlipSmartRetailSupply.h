@@ -13,8 +13,6 @@ Please refer lisence.txt for complete details.
 
 #endif
 
-#define RX 11
-#define TX 10
 #define SS_PIN 8
 #define RST_PIN 4
 #define DHTPIN 2
@@ -30,15 +28,15 @@ Please refer lisence.txt for complete details.
 class FlipSmartRetailSupply
 {
     public:
-            FlipSmartRetailSupply();
-    		 int readHum();
+         FlipSmartRetailSupply();
+		 int readHum();
 		 int readTempC();
 		 int readTempF();
 		 int readLdr();
 		 int readPir();
-            void readRfid();
-		 char* getRfid();
-            void initRfid();
+         void readRfid();
+		 String* getRfid();
+         void initRfid();
 		 void initWeight();
 		 int getWeight();
 

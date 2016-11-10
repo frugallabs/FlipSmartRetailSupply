@@ -7,8 +7,6 @@ Please refer lisence.txt for complete details.
 #include "Arduino.h"
 #include "FlipSmartRetailSupply.h"
 #include "RFID.h"
-#include "ArduinoJson.h"
-#include "SoftwareSerial.h"
 #include "DHT.h"
 #include "HX711.h"
 #include "espduino.h"
@@ -65,19 +63,18 @@ void FlipSmartRetailSupply::initRfid()
   rfid.init();
 }
 
-char* FlipSmartRetailSupply::getRfid()
+String* FlipSmartRetailSupply::getRfid()
 { 
   cardNum = String('\0'); 
   readRfid();
   //String(xn)=String(cardNum);
   if (cardNum != '\0')//if string cardNum is not empty, print the value
  {
+	int length_val=cardNum.length()+1;
+	char char_val[length_val];
+	cardNum.toCharArray(char_val,length_val);
+	return(&cardNum);
  }
- int length_val=cardNum.length()+1;
- char char_val[length_val];
- cardNum.toCharArray(char_val,length_val);
- //Serial.println(char_val);
- return(char_val);
 }
 
 
